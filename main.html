@@ -70,33 +70,24 @@
 </style>
 
 <script src="./script.js">
-	// Get references to clock hands
-const hourHand = document.querySelector(".hour-hand");
-const minuteHand = document.querySelector(".min-hand");
-const secondHand = document.querySelector(".second-hand");
-
-function setClock() {
+	setInterval(() => {
   const now = new Date();
-  const seconds = now.getSeconds();
-  const minutes = now.getMinutes();
-  const hours = now.getHours() % 12;
+  const hour = now.getHours();
+  const minute = now.getMinutes();
+  const second = now.getSeconds();
 
-  // Calculate rotation angles for clock hands
-  const secondDegrees = ((seconds / 60) * 360) + 90;
-  const minuteDegrees = ((minutes / 60) * 360) + 90;
-  const hourDegrees = ((hours / 12) * 360) + 90 + (minutes / 60) * 30;
+  const hourRotation = (30 * hour) + (0.5 * minute) + 90;
+  const minuteRotation = (6 * minute) + 90;
+  const secondRotation = 6 * second;
 
-  // Apply the rotation transforms to clock hands
-  secondHand.style.transform = `rotate(${secondDegrees}deg)`;
-  minuteHand.style.transform = `rotate(${minuteDegrees}deg)`;
-  hourHand.style.transform = `rotate(${hourDegrees}deg)`;
-}
+  const hourHand = document.querySelector(".hour-hand");
+  const minuteHand = document.querySelector(".min-hand");
+  const secondHand = document.querySelector(".second-hand");
 
-// Update the clock every second
-setInterval(setClock, 1000);
-
-// Call the setClock function immediately to set the initial time
-setClock();
+  hourHand.style.transform = `rotate(${hourRotation}deg)`;
+  minuteHand.style.transform = `rotate(${minuteRotation}deg)`;
+  secondHand.style.transform = `rotate(${secondRotation}deg)`;
+}, 1000);
 
 </script>
 </body>
