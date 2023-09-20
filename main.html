@@ -70,25 +70,19 @@
 </style>
 
 <script src="./script.js">
-	setInterval(() => {
-  const now = new Date();
-  const hour = now.getHours();
-  const minute = now.getMinutes();
-  const second = now.getSeconds();
+	setInterval(()=>{
+let hour = new Date().getHours();
+let min = new Date().getMinutes();
+let sec = new Date().getSeconds();
 
-  const hourRotation = (30 * hour) + (0.5 * minute) + 90;
-  const minuteRotation = (6 * minute) + 90;
-  const secondRotation = 6 * second;
+let hourHand = ((30*hour) + (min/2) + 90);
+let minHand = (6 * min + 90);
+let secHand = (6 * sec);
 
-  const hourHand = document.querySelector(".hour-hand");
-  const minuteHand = document.querySelector(".min-hand");
-  const secondHand = document.querySelector(".second-hand");
-
-  hourHand.style.transform = `rotate(${hourRotation}deg)`;
-  minuteHand.style.transform = `rotate(${minuteRotation}deg)`;
-  secondHand.style.transform = `rotate(${secondRotation}deg)`;
-}, 1000);
-
+document.getElementsByClassName("hour-hand")[0].style.transform = `rotate(${hourHand}deg)`;
+document.getElementsByClassName("min-hand")[0].style.transform = `rotate(${minHand}deg)`;
+document.getElementsByClassName("second-hand")[0].style.transform = `rotate(${secHand}deg)`;
+},1000);
 </script>
 </body>
 </html>
